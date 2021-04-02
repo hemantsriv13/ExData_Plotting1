@@ -1,4 +1,4 @@
-file_inp<-read.csv2(file="household_power_consumption.txt",sep=";", header = TRUE)
+file_inp<-read.csv2(file="household_power_consumption.txt",sep=";", header = TRUE)                                    
 start_pt<-"1/2/2007"
 fin_pt<-"2/2/2007"
 req_set1<-file_inp[file_inp$Date==start_pt,]
@@ -9,6 +9,7 @@ req_set$Date<-as.Date(req_set$Date, format ="%d/%m/%Y")
 req_set$Sub_metering_1<-as.numeric(req_set$Sub_metering_1)
 req_set$Sub_metering_2<-as.numeric(req_set$Sub_metering_2)
 req_set$Sub_metering_3<-as.numeric(req_set$Sub_metering_3)
+dt<-as.POSIXct(paste(req_set$Date, req_set$Time))  
 png(file="Plot33.png", width = 480, height = 480)
 with(req_set, {
   plot(req_set$Sub_metering_1~dt, type="l", ylab="Energy Sub-Metering", xlab="")
